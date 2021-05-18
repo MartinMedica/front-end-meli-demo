@@ -1,0 +1,16 @@
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $color-yellow;
+    padding: calc(#{$padding-sm}  / 2)  0;
+}
+
+.header__logo{
+    margin-right: $padding-sm;
+}
+
+.header__search-input{
+    width: 250px;
+    height: 100%;
+}
