@@ -6,15 +6,35 @@ $color-gray-700: #666;
 $color-gray-500: #999;
 $color-gray-100: #eee;
 
+$margin-sm: 16px;
+
 $padding-sm: 16px;
 $padding-md: 32px;
 
 $img-width-sm: 180px; 
 $img-width-md: 680px; 
 
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-md: 18px;
+$font-size-lg: 24px;
+$font-size-xl: 46px;
+
+$container-width: 75%;
+
+
+.container{
+    width: $container-width;
+    margin: 0 auto;
+}
 
 *, *::after, *::before{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+img{
+    display: block;
 }

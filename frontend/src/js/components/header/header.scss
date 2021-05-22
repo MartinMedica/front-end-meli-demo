@@ -1,0 +1,51 @@
+.header {
+  background-color: $color-yellow;
+
+  &__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: calc(#{$padding-sm} / 2) 0;
+  }
+
+  &__logo {
+    margin-right: $margin-sm;
+  }
+
+  &__search-bar {
+    display: flex;
+    width: 100%;
+
+    &__input {
+      padding: calc(#{$padding-sm} / 2);
+      width: 100%;
+      border: 0;
+      border-radius: 3px 0px 0px 3px;
+      font-size: $font-size-md;
+      color: $color-gray-900;
+
+      &:focus {
+        outline: none;
+      }
+
+      &::placeholder {
+        color: $color-gray-500;
+      }
+    }
+
+    &__button {
+      padding: calc(#{$padding-sm} / 2);
+      height: 21px + $padding-sm;
+      border: 0;
+      background-color: $color-gray-100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 0px 3px 3px 0px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+.breadcrumb__ul {
+  display: flex;
+  list-style: none;
+  padding: $padding-sm 0;
+  align-items: center;
+}
+.breadcrumb__li {
+  color: $color-gray-700;
+  font-size: $font-size-md;
+
+  &:last-child {
+    font-weight: bold;
+  }
+  &:not(:last-child)::after {
+    content: ">";
+    padding: 0 .7rem;
+  }
+}
