@@ -7,10 +7,10 @@ const common = require("./webpack.common");
 const {merge} = require("webpack-merge");
 
 module.exports = merge(common,{
-    entry:  path.join(__dirname, "src", "js", "app.prod.tsx"),
     output:  {
         path: path.join(__dirname, "dist"),
-        filename: "bundle.[contenthash].js"
+        filename: "/bundle.[contenthash].js",
+        publicPath : '/'
     },
     mode: "production",
     module: {

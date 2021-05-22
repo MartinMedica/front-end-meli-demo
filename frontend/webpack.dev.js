@@ -3,10 +3,10 @@ const common = require("./webpack.common");
 const { merge } = require("webpack-merge");
 
 module.exports = merge(common,{
-    entry:  path.join(__dirname, "src", "js", "app.tsx"),
     output:  {
         path: path.join(__dirname, "dist"),
-        filename: "bundle.js"
+        filename: "bundle.js",
+        publicPath : '/'
     },
     mode: "development",
     module: {

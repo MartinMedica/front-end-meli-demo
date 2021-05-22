@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports = {
+    entry:  path.join(__dirname, "src", "js", "app.tsx"),
     resolve: {
         extensions: [".ts", ".tsx", ".js", ".jsx"]
     },
