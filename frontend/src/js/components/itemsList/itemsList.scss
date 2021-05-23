@@ -1,3 +1,42 @@
 .items-list{
     background-color: #fff;
+    padding: 0 $padding-sm;
+    border-radius: 4px;
+    &__item{
+        display: flex;
+        width: 100%;
+        &:not(:last-child){
+            border-bottom: 1px solid $color-gray-100;
+        }
+        &__link{
+            text-decoration: none;
+        }
+        &__thumbnail{
+            padding: $padding-sm $padding-sm  $padding-sm  0;
+            width: $image-width-md;
+            height: $image-width-md;
+            border-radius: 4px;
+        }
+        &__info{
+            width: 60%;
+            color: $color-gray-900;
+            &__price{
+                font-size: $font-size-lg;
+                padding: $padding-md 0;
+            }
+            &__title{
+                width: 60%;
+                font-size: $font-size-md;
+            }
+            &__shipping{
+                display: inline;
+                margin-left: .5rem;
+            }
+        }
+        &__location{
+            padding: $padding-md 0;
+            color: $color-gray-500;
+            font-size: $font-size-xs;
+        }
+    }
 }

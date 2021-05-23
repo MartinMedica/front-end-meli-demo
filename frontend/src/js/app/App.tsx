@@ -1,11 +1,10 @@
 import * as React from "react";
 import { Header } from "../components/header/header";
 import { Breadcrum } from "../components/breadcrum/breadcrum";
-// import { ItemDetails } from "../components/itemDetails/itemDetails";
+import { ItemDetails } from "../components/itemDetails/itemDetails";
 import { ItemsList } from "../components/itemsList/itemsList";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { ItemDetails } from "../components/itemDetails/itemDetails";
 
 export function App() {
   return (
@@ -23,8 +22,8 @@ export function App() {
             ]}
           ></Breadcrum>
           <Switch>
-            <Route path="/items" component={ItemsList}/>
             <Route path="/items/:id" component={ItemDetails}/>
+            <Route path="/items" component={ItemsList}/>
           </Switch>
         </main>
       </div>

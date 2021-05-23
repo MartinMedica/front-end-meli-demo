@@ -7,6 +7,7 @@ $color-gray-500: #999;
 $color-gray-100: #eee;
 
 $margin-sm: 16px;
+$margin-md: 32px;
 
 $padding-sm: 16px;
 $padding-md: 32px;
@@ -14,13 +15,18 @@ $padding-md: 32px;
 $img-width-sm: 180px; 
 $img-width-md: 680px; 
 
-$font-size-xs: 12px;
-$font-size-sm: 14px;
+$font-size-xxs: 12px;
+$font-size-xs: 14px;
+$font-size-sm: 18px;
 $font-size-md: 18px;
 $font-size-lg: 24px;
-$font-size-xl: 46px;
+$font-size-xl: 28px;
+$font-size-xxl: 46px;
 
 $container-width: 75%;
+
+$image-width-md: 180px;
+$image-width-lg: 680px;
 
 
 .container{
