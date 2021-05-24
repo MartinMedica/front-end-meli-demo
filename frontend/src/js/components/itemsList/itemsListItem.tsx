@@ -18,7 +18,7 @@ export const ItemsListItem: React.FC<IItemListItem> = (
           {props.free_shipping && (
             <img
               className="items-list__item__info__shipping"
-              src="/images/ic_shipping.png"
+              src="images/ic_shipping.png"
               alt="shipping"
             />
           )}

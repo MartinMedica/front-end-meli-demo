@@ -16,7 +16,7 @@ export const Header: React.FC = (): React.ReactElement => {
     <header className="header">
       <div className="header__content container">
         <Link to="/">
-          <img className="header__logo" src="/images/Logo_ML.png" alt="logo" />
+          <img className="header__logo" src="images/Logo_ML.png" alt="logo" />
         </Link>
         <form className="header__search-bar" onSubmit={handleSubmit}>
           <input
@@ -34,7 +34,7 @@ export const Header: React.FC = (): React.ReactElement => {
             value="Submit"
             className="header__search-bar__button"
           >
-            <img src="/images/ic_Search.png" />
+            <img src="images/ic_Search.png" />
           </button>
         </form>
       </div>

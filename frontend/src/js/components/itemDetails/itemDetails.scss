@@ -42,6 +42,7 @@
           margin-bottom: $margin-md;
       }
       &__desc{
+          white-space: pre-line;
           width: 66%;
           font-size: $font-size-xs;
           color: $color-gray-500;

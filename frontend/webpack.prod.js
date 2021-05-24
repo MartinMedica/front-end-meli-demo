@@ -6,11 +6,15 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const common = require("./webpack.common");
 const {merge} = require("webpack-merge");
 
+
+const webpack = require("webpack");
+require("dotenv").config({ path: path.join(__dirname, ".env.prod") });
+
 module.exports = merge(common,{
     output:  {
         path: path.join(__dirname, "dist"),
-        filename: "/bundle.[contenthash].js",
-        publicPath : '/'
+        filename: "bundle.[contenthash].js",
+        publicPath : './'
     },
     mode: "production",
     module: {
@@ -27,6 +31,9 @@ module.exports = merge(common,{
         ]
     },
     plugins: [
+        new webpack.DefinePlugin({
+            "process.env.API_URL": JSON.stringify(process.env.API_URL),
+          }),
         new CleanWebpackPlugin(),
         new  MiniCssExtractPlugin(
             {

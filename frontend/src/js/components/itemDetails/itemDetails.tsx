@@ -11,7 +11,6 @@ export const ItemDetails: React.FC = (props: any): React.ReactElement => {
   useEffect(() => {
     const fetchItem = async () => {
       const res = await getItemAsync(props.match.params.id);
-      console.log(res);
       setItem(res);
     };
     fetchItem();
@@ -19,7 +18,7 @@ export const ItemDetails: React.FC = (props: any): React.ReactElement => {
   return (
     <>
       <Breadcrum
-        categories={item?.categories ? item?.categories : []}
+        categories={item?.categories ? item.categories : []}
       ></Breadcrum>
       <div className="item-details">
         <div className="item-details__main">
