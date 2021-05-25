@@ -8,9 +8,9 @@
       width: $image-width-lg;
     }
     &__info {
-        justify-self: flex-end;
-        color: $color-gray-900;
-        max-width: 33%;
+      justify-self: flex-end;
+      color: $color-gray-900;
+      max-width: 33%;
       &__tag {
         font-size: $font-size-sm;
         margin-bottom: $margin-sm;
@@ -22,7 +22,6 @@
       &__price {
         font-size: $font-size-xxl;
         padding: $padding-md 0;
-        
       }
       &__btn {
         color: #fff;
@@ -35,17 +34,41 @@
       }
     }
   }
-  &__desc{
-      &__title{
-          font-weight: bold;
-          font-size: $font-size-xl;
+  &__desc {
+    &__title {
+      font-weight: bold;
+      font-size: $font-size-xl;
+      margin-bottom: $margin-md;
+    }
+    &__desc {
+      white-space: pre-line;
+      width: 66%;
+      font-size: $font-size-xs;
+      color: $color-gray-500;
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .item-details {
+    width: 100%;
+    &__main {
+      display: block;
+      &__thumbnail {
+        width: 100%;
+      }
+      &__info {
+        max-width: 100%;
+        &__btn {
           margin-bottom: $margin-md;
+        }
       }
-      &__desc{
-          white-space: pre-line;
-          width: 66%;
-          font-size: $font-size-xs;
-          color: $color-gray-500;
+    }
+    &__desc {
+      &__desc {
+        word-wrap: break-word;
+        width: 100%;
       }
+    }
   }
 }
