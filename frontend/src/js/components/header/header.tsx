@@ -33,8 +33,9 @@ export const Header: React.FC = (): React.ReactElement => {
             type="submit"
             value="Submit"
             className="header__search-bar__button"
+            aria-label = "search"
           >
-            <img src="/images/ic_Search.png" />
+            <img src="/images/ic_Search.png" alt="search" />
           </button>
         </form>
       </div>
