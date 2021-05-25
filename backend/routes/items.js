@@ -1,24 +1,49 @@
+const { response } = require("express");
 var express = require("express");
 const fetch = require("node-fetch");
 
 var router = express.Router();
 
+let getCategories = async function (category_id) {
+  const categoriesData = await fetch(
+    `https://api.mercadolibre.com/categories/${category_id}`
+  )
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
+
+  const categories =
+    categoriesData && categoriesData.path_from_root
+      ? categoriesData.path_from_root.map((x) => x.name)
+      : [];
+
+  return categories;
+};
+
 router.get("/:id", async function (req, res) {
-  const itemResponse = await fetch(
-    `https://api.mercadolibre.com/items/${req.params.id}`
-  );
-  const itemData = await itemResponse.json();
+  const itemId = req.params.id;
+  let [itemRes, descRes] = await Promise.allSettled([
+    fetch(`https://api.mercadolibre.com/items/${itemId}`).then((res) =>
+      res.json()
+    ),
+    fetch(`https://api.mercadolibre.com/items/${itemId}/description`).then(
+      (res) => res.json()
+    ),
+  ]).then((res) => [res[0], res[1]]);
 
-  const descResponse = await fetch(
-    `https://api.mercadolibre.com/items/${req.params.id}/description`
-  );
-  const descData = await descResponse.json();
+  let itemData, descData;
+  if (itemRes.status == "fulfilled") {
+    itemData = itemRes.value;
+    if (descRes.status == "fulfilled") {
+      descData = descRes.value;
+    }
+  } else {
+    res
+      .status(500)
+      .send({ error: true, errorMessage: `Could not find any item with id: ${itemId}` });
+    return;
+  }
 
-  const categoriesResponse = await fetch(
-    `https://api.mercadolibre.com/categories/${itemData.category_id}`
-  );
-  const categoriesData = await categoriesResponse.json();
-  const categories = categoriesData.path_from_root.map((x) => x.name);
+  const categories = await getCategories(itemData.category_id);
 
   item = {
     autor: {
@@ -36,25 +61,34 @@ router.get("/:id", async function (req, res) {
       },
       picture: itemData.thumbnail,
       condition: itemData.condition,
-      free_shipping: itemData.shipping.free_shipping,
+      free_shipping: itemData.shipping && itemData.shipping.free_shipping,
       sold_quantity: itemData.sold_quantity,
-      description: descData.plain_text,
+      description: descData && descData.plain_text,
     },
   };
-  res.json(item);
+  res.json({data: item, error: false});
 });
 
 router.get("*", async function (req, res) {
   let search = req.query.search;
 
-  const itemsResponse = await fetch(
+  const itemsData = await fetch(
     `https://api.mercadolibre.com/sites/MLA/search?q=${search}`
-  );
-  const itemsData = await itemsResponse.json();
+  )
+    .then((res) => res.json())
+    .catch((err) => {
+      res.status(500).send({ error: true, errorMessage: err.message });
+    });
 
+  if (!itemsData) {
+    return;
+  }
+  if (!itemsData.results || itemsData.results.length ==  0 ) {
+    res.status(500).send({ error: true, errorMessage:`Could not find any items.` });
+    return;
+  }
   const items = [];
   var categoriesCount = {};
-
   for (
     let i = 0;
     i < (itemsData.results.length > 4 ? 4 : itemsData.results.length);
@@ -90,11 +124,8 @@ router.get("*", async function (req, res) {
     }
   }
 
-  const categoriesResponse = await fetch(
-    `https://api.mercadolibre.com/categories/${categoryId}`
-  );
-  const categoriesData = await categoriesResponse.json();
-  const categories = categoriesData.path_from_root.map((x) => x.name);
+  const categories = await getCategories(categoryId);
+
   const response = {
     autor: {
       name: "martin",
@@ -103,7 +134,7 @@ router.get("*", async function (req, res) {
     categories: categories,
     items: items,
   };
-  res.json(response);
+  res.json({data: response, error: false});
 });
 
 module.exports = router;
